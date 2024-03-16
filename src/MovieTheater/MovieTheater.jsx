@@ -10,9 +10,9 @@ import MovieCard from './MovieCard'
 
 function MovieTheater() {
 
-  const base_url = 'https://api.themoviedb.org/3';
-  const imageUrl = 'https://image.tmdb.org/t/p';
-  const api_key = import.meta.env.VITE_MT_API_KEY;
+  const base_url = 'https://api.themoviedb.org/3'
+  const imageUrl = 'https://image.tmdb.org/t/p'
+  const api_key = import.meta.env.VITE_MT_API_KEY
 
   const [movies, setMovies] = useState([])
   const [query, setQuery] = useState('')
@@ -73,7 +73,7 @@ const fetchMovies = useCallback(async () => {
       console.log('Failed to fetch movie data')
     }
   }
-  
+
   useEffect(() => {
     fetchMovies()
   }, [query, fetchMovies])
@@ -87,6 +87,11 @@ const fetchMovies = useCallback(async () => {
       selectMovie(selectedMovie)
     }
   }, [movies, hasRandomBackdropSet])
+
+  // Scrolls screen up when a movie is selected
+  useEffect(() => {
+    window.scrollTo({top: 0, behavior: 'smooth'})
+  }, [selectedMovie])
 
 
   const renderMovies = () =>
@@ -173,7 +178,7 @@ const fetchMovies = useCallback(async () => {
       <header className={styles.header}>
         <div className={styles.headerContent}>
           <a href="/movietheater"><span className={styles.headerTitle}>Movie Theater App</span></a>
-          <a href="/"><span>Back to Homepage</span></a>
+          <a href="/" className={styles.backHome}><span>Back to Homepage</span></a>
         </div>
       </header>
       <div className={styles.hero} style={{backgroundImage: selectBackdrop()}} onMouseMove={handleMouseMove}>

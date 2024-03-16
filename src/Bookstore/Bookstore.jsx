@@ -14,7 +14,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { Box, DialogTitle, FormControlLabel, FormGroup, Switch, Dialog, DialogActions, Button } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 
-
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-material.css';
 
@@ -42,7 +41,7 @@ function Bookstore() {
       cellRenderer: params => 
       <IconButton onClick={() => deleteBook(params.value)} size="small" color="error">
         <DeleteIcon />
-      </IconButton> 
+      </IconButton>
     }
   ]
 
@@ -205,7 +204,7 @@ function Bookstore() {
           <div className={styles.addBookContainer}>
             <AddBook addBook={addBook} />
           </div>
-          <div className={styles.agThemeMaterial}>
+          <div className='ag-theme-material' style={{width: '80%', height: '800px'}}>
             <AgGridReact
               rowData={books}
               columnDefs={columnDefs}

@@ -5,7 +5,7 @@
   height: 64px;
 }
 
-.header-content {
+.headerContent {
   margin: auto 1rem;
   justify-content: space-between;
 }
@@ -22,11 +22,6 @@
   width: 80%;
 }
 
-.agThemeMaterial {
-  width: 80%;
-  height: 500px;
-}
-
 .footer {
   display: flex;
   justify-content: space-between;
@@ -34,6 +29,7 @@
   border: 2px solid #1976d2;
   height: 50px;
 }
+
 p {
   margin: auto 15px;
 }
