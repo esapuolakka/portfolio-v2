@@ -1,9 +1,8 @@
 .bookstore {
-  height: 100vh;
+  width: 100%;
 }
 .header {
-  width: 50%;
-  min-height: 64px;
+  height: 64px;
 }
 
 .header-content {
@@ -12,12 +11,19 @@
 }
 
 .main {
-  margin: 80px auto 0;
+  margin: 100px auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 150px);  
+}
+.add-book-container {
   width: 80%;
 }
 
 .ag-theme-material {
-  width: 100%;
+  width: 80%;
   height: 500px;
 }
 
@@ -27,7 +33,6 @@
   color: #1976d2;
   border: 2px solid #1976d2;
   height: 50px;
-  margin-top: 80px;
 }
 p {
   margin: auto 15px;

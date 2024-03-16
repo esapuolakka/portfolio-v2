@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import './Bookstore.css';
 import AddBook from './AddBook';
 import { useAuth } from '../Contexts/AuthContext';
+import { getDatabase, ref, set, onValue, off, push } from "firebase/database";
+
 import { AgGridReact } from 'ag-grid-react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -15,8 +17,6 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-material.css';
-
-const URL = 'https://bookstore-bd890-default-rtdb.europe-west1.firebasedatabase.app/books/.json';
 
 
 function Bookstore() {
@@ -46,61 +46,86 @@ function Bookstore() {
     }
   ]
 
+ 
   useEffect(() => {
     fetchBooks();
-  }, [])
+  }, []);
 
+  // Get all books
   const fetchBooks = () => {
-      fetch(URL)
-        .then(response => response.json())
-        .then(data => addKeys(data))
-        .catch(err => console.error(err));
+    if (!currentUser) {
+        console.error('Unauthorized user');
+        return;
+    }
+    const db = getDatabase();
+    const booksRef = ref(db, 'books');
+    onValue(booksRef, (snapshot) => {
+      const data = snapshot.val();
+      const booksArray = Object.keys(data).map(key => ({ id: key, ...data[key] }));
+      setBooks(booksArray);
+    })
+
+    return () => {
+      const db = getDatabase();
+      const booksRef = ref(db, 'books');
+      off(booksRef);
+    }
   }
 
-  // Add keys to the book objects
-  const addKeys = (data) => {
-    const keys = Object.keys(data);
-    const valueKeys = Object.values(data).map((item, index) => 
-    Object.defineProperty(item, 'id', {value: keys[index]}));
-    setBooks(valueKeys);
-  }
-   
+
+  // Post-method
   const addBook = (newBook) => {
     if (!currentUser) {
-      alert('Please log in to delete books!')
+      alert('Please log in to add books!')
       return;
     }
     setLoading(true);
-    fetch(URL,
-    {
-      method: 'POST',
-      body: JSON.stringify(newBook)
-    })
-    .then(fetchBooks(books))
-    .then(setLoading(false))
-    .catch(err => console.error(err))
-  }
+    const db = getDatabase();
+    const booksRef = ref(db, 'books');
+    const newBookRef = push(booksRef);
+    set(newBookRef, newBook)
+      .then(() => {
+        setLoading(false)
+        fetchBooks();
+      })
+      .catch(err => {
+        console.error('Error adding book:', err);
+        setLoading(false);
+      });
+  };
 
+  // Delete-method
   const deleteBook = (id) => {
     if (!currentUser) {
       alert('Please log in to delete books!')
       return;
     }
     setLoading(true);
-    fetch(`https://bookstore-bd890-default-rtdb.europe-west1.firebasedatabase.app/books/${id}.json`,
-    {
-      method: 'DELETE'
-    })  
-    .then(response => {
-      if(!response.ok) {
-        throw new Error('Failed to delete a book!')
-      }
-      const updatedBooks = books.filter(book => book.id !== id);
-      setBooks(updatedBooks);
-      setLoading(false);
-    })
-    .catch(err => console.error(err))
+    const db = getDatabase();
+    const bookRef = ref(db, `books/${id}`);
+    set(bookRef, null)
+      .then(() => setLoading(false))
+      .catch(err => {
+        console.error('Error deleting book:', err);
+        setLoading(false);
+      });
+  };
+
+
+
+
+  // Add keys to the book objects
+  const addKeys = (data) => {
+    const keys = Object.keys(data);
+    const valueKeys = Object.values(data).map((item, index) => {
+        if (typeof item === 'object') {
+            Object.defineProperty(item, 'id', { value: keys[index] });
+        }
+        return item;
+    });
+    setBooks(valueKeys);
   }
+
 
   const handleChange = async () => {
     setIsChecked(false);
@@ -109,11 +134,12 @@ function Bookstore() {
         setLoading(true);
         await new Promise(resolve => setTimeout(resolve, 400));
         await signout();
-        setLoading(false);
-        navigate('/login');
-      } catch (e){
-        console.log(e.message);
+        navigate('/');
+      } catch (err){
+        console.error(err);
         setError('Failed to log out');
+      } finally {
+        setLoading(false);
       }
   }
 
@@ -172,17 +198,19 @@ function Bookstore() {
           <Dialog open={deleteUserOpen}>
             <DialogTitle style={{marginBottom: '50px'}}>Delete user account?</DialogTitle>
             <DialogActions>
-            <Button color="primary" onClick={handleClose}>Cancel</Button>
-            <Button color="error" onClick={handleDeleteUser}>Delete</Button>
-      </DialogActions>
+              <Button color="primary" onClick={handleClose}>Cancel</Button>
+              <Button color="error" onClick={handleDeleteUser}>Delete</Button>
+            </DialogActions>
           </Dialog>}
-        <div className="ag-theme-material">
-          <AddBook addBook={addBook} />
-          <AgGridReact style={{minWidth: '300px', width: '100%', height: '100%'}}
-            rowData={books}
-            columnDefs={columnDefs}
-          />
-        </div>
+          <div className='add-book-container'>
+            <AddBook addBook={addBook} />
+          </div>
+          <div className="ag-theme-material">
+            <AgGridReact
+              rowData={books}
+              columnDefs={columnDefs}
+            />
+          </div>
       </div>
       <div className='footer'>
           <p>Logged in: <span id="user-highlight">{currentUser.email}</span></p>

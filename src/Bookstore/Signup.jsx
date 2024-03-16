@@ -52,9 +52,20 @@ export default function SignUp() {
     setLoading(false);
   };
 
+  const handleHome = () => {
+    navigate('/');
+  }
+  const placeholder = () => {
+    return <div className='placeholder'></div>
+  }
+
   return (
     <div className='login-signup-page'>
-    <ThemeProvider theme={defaultTheme}>
+      <div className='to-home-page-div'>
+        <Button variant='text' onClick={handleHome}>Back to Homepage</Button>
+      </div>
+      <div className='login-signup-main'>
+      <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -65,8 +76,7 @@ export default function SignUp() {
             alignItems: 'center',
           }}
         >
-          {error && <Alert variant="outlined" severity="error">{error}</Alert>}
-          {currentUser && currentUser.email}
+          {error ? <Alert variant="outlined" severity="error" className='placeholder'>{error}</Alert> : placeholder()}
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
@@ -133,6 +143,7 @@ export default function SignUp() {
         <Copyright sx={{ mt: 5 }} />
       </Container>
     </ThemeProvider>
+    </div>
   </div>
   );
 }

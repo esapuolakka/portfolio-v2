@@ -1,0 +1,162 @@
+.homepage {
+  margin: 0;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  height: 80px;
+  background-color: #fff;
+  border-bottom: 2px solid #000;
+}
+
+.header h1 {
+  margin-left: 20px;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  min-height: calc(100vh - 140px);
+}
+
+.main::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background-image: url('../assets/background.jpg');
+  background-size: cover;
+  background-position: top;
+}
+
+.cardsContainer {
+  margin: 5% 50px 10% 50px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+  color: #FFF;
+}
+
+.card:hover {
+  cursor: pointer;
+}
+
+.card:active {
+  box-shadow: none;
+}
+
+.cardImage {
+  overflow: hidden;
+}
+
+.image {
+  max-width: 100%;
+  object-fit: scale-down;
+  scale: 1;
+  transition: scale 350ms ease 50ms;
+}
+
+.image:hover {
+  scale: 1.2;
+}
+
+.cardText {
+  position: relative;
+  background-color: #1976d2;
+  border-top: 1px solid #000;
+  margin-bottom: 0;
+}
+
+.cardText h3 {
+  font-size: 20px;
+  margin: 0;
+  padding-left: 8px;
+}
+
+.arrowContainer {
+  margin-bottom: 10px;
+  height: auto;
+  text-align: center;
+}
+
+.arrow {
+  transform:rotate(90deg);
+  transition: transform 0.3s ease;
+}
+
+.arrow:hover {
+  scale: 1.2;
+}
+
+.arrow.open {
+  transform: translate(2.5%, -20%) rotate(270deg);
+}
+
+.expandedText {
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 5%;
+  display: flex;
+  z-index: 2;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #1976d2;
+  overflow: hidden;
+  box-shadow: 4px 8px rgba(0, 0, 0, 0.6);
+  font-size: 1rem;
+  text-align: justify;
+  opacity: 0;
+  transition: width, opacity, transform 500ms ease-in;
+}
+
+.expandedText.visible {
+  width: 125%;
+  color: #fff;
+  z-index: 2;
+  opacity: 1;
+}
+
+.footer {
+  display: flex;
+  height: 60px;
+  background-color: rgb(250, 215, 170, 0.5);
+  text-align: center;
+}
+
+.footer p {
+  margin: auto;
+}
+
+/* @media screen and (max-width: 600px) {
+  .main {
+    height: 100%;
+  }
+  .cardsContainer {
+    grid-template-columns: repeat(2, minmax(100px, 1fr));
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .cardsContainer {
+    grid-template-columns: 1fr;
+  }
+} */
