@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import styles from './Bookstore.module.css';
 import { useAuth } from '../Contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
@@ -56,15 +57,15 @@ export default function SignUp() {
     navigate('/');
   }
   const placeholder = () => {
-    return <div className='placeholder'></div>
+    return <div className={styles.placeholder}></div>
   }
 
   return (
-    <div className='login-signup-page'>
-      <div className='to-home-page-div'>
+    <div className={styles.loginSignupPage}>
+      <div className={styles.toHomePageDiv}>
         <Button variant='text' onClick={handleHome}>Back to Homepage</Button>
       </div>
-      <div className='login-signup-main'>
+      <div className={styles.loginSignupMain}>
       <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -76,7 +77,7 @@ export default function SignUp() {
             alignItems: 'center',
           }}
         >
-          {error ? <Alert variant="outlined" severity="error" className='placeholder'>{error}</Alert> : placeholder()}
+          {error ? <Alert variant="outlined" severity="error" className={styles.placeholder}>{error}</Alert> : placeholder()}
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Bookstore.css';
+import styles from './Bookstore.module.css';
 import AddBook from './AddBook';
 import { useAuth } from '../Contexts/AuthContext';
 import { getDatabase, ref, set, onValue, off, push } from "firebase/database";
@@ -11,7 +11,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
-import {Box, DialogTitle, FormControlLabel, FormGroup, Switch, Dialog, DialogActions, Button} from '@mui/material';
+import { Box, DialogTitle, FormControlLabel, FormGroup, Switch, Dialog, DialogActions, Button } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 
 
@@ -46,12 +46,12 @@ function Bookstore() {
     }
   ]
 
- 
+  // Get all books from the database
   useEffect(() => {
     fetchBooks();
   }, []);
 
-  // Get all books
+  // Get-method
   const fetchBooks = () => {
     if (!currentUser) {
         console.error('Unauthorized user');
@@ -169,10 +169,10 @@ function Bookstore() {
   }
 
   return (
-    <div className='bookstore'>
-      <AppBar className='header' position='absolute'>
-        <Toolbar className='header-content'>
-          <Typography variant="h5" className='header-title'>
+    <div className={styles.bookstore}>
+      <AppBar className={styles.header} position='absolute'>
+        <Toolbar className={styles.headerContent}>
+          <Typography variant="h5" className={styles.headerTitle}>
             Bookstore database
           </Typography>
           <FormGroup style={{backgroundColor: '#fff', padding: '.5rem 1rem'}}>
@@ -189,7 +189,7 @@ function Bookstore() {
           </FormGroup>
         </Toolbar>
       </AppBar>
-      <div className='main'>
+      <div className={styles.main}>
         {loading &&
           <Box sx={{position: 'fixed', zIndex: 200, left: '50%', top: '40%'}}>
             <CircularProgress />
@@ -202,18 +202,18 @@ function Bookstore() {
               <Button color="error" onClick={handleDeleteUser}>Delete</Button>
             </DialogActions>
           </Dialog>}
-          <div className='add-book-container'>
+          <div className={styles.addBookContainer}>
             <AddBook addBook={addBook} />
           </div>
-          <div className="ag-theme-material">
+          <div className={styles.agThemeMaterial}>
             <AgGridReact
               rowData={books}
               columnDefs={columnDefs}
             />
           </div>
       </div>
-      <div className='footer'>
-          <p>Logged in: <span id="user-highlight">{currentUser.email}</span></p>
+      <div className={styles.footer}>
+          <p>Logged in: <span id={styles.userHighlight}>{currentUser.email}</span></p>
           <p><a onClick={handleOpen}>Delete user?</a></p>
       </div>
     </div>

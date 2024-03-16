@@ -6,8 +6,10 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 function Homepage() {
 
   const [cards, setCards] = useState([
-    { id: 1, title: 'Bookstore', image: 'bookstore.png', link: '/bookstore', expanded: false, text: 'This project utilizes the MUI and AgGrid component libraries, as well as the Google Firebase Realtime Database. Users must be authenticated to access the app. Additionally, account deletion functionality is available in the bottom right corner.' },
-    { id: 2, title: 'Card B', image: 'bookstore.png', link: '/', expanded: false, text: 'Another example text for Card B.' },
+    { id: 1, title: 'Bookstore', image: 'bookstore-thumbnail.png', link: '/bookstore', expanded: false, text: 'This project utilizes the MUI and AgGrid component libraries, as well as the Google Firebase Realtime Database. Users must be authenticated to access the app. Additionally, account deletion functionality is available in the bottom right corner.' },
+    { id: 2, title: 'Movie Theater', image: 'movietheater-thumbnail.jpg', link: '/movietheater', expanded: false, text: 'This project integrates The Movie DB API for movie data retrieval and utilizes the YouTube component trailer playback. HTTP requests are handled by Axios and the search functionality has been enhanced with Lodash debounce. Enjoy!' },
+    { id: 3, title: 'Card C', image: 'no-image.png', link: '/', expanded: false, text: 'Another example text for Card C.' },
+    { id: 4, title: 'Card D', image: 'no-image.png', link: '/', expanded: false, text: 'Another example text for Card D.' },
   ]);
 
   // Toggles the expanded state of the card
@@ -32,7 +34,7 @@ function Homepage() {
           <div className={styles.card} key={card.id}>
           <a href={card.link}>
           <div className={styles.cardImage}>
-            <img className={styles.image} src={`src/assets/${card.image}`} />
+            <img className={styles.image} src={`src/images/${card.image}`}/>
           </div>
           </a>
           <div className={styles.cardText}>

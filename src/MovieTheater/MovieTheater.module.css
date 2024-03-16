@@ -1,0 +1,194 @@
+
+.movieTheaterApp {
+  margin: 0;
+  padding: 0;
+  /* background-color: rgb(33, 36, 43); */
+  background-color: #edecec;
+  background-image: url(../images/movietheater-bg.jpeg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.header {
+  width: 100%;
+  height: 2rem;
+  background-color: #edecec;
+  display: flex;
+  align-items: center;
+}
+
+.headerContent {
+  max-width: 1000px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.headerTitle {
+  color: #000000;
+  margin-left: 1rem;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-height: 500px;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  background-position: top center;
+}
+
+.heroContainer {
+  max-width: 1000px;
+  height: auto;
+  margin-top: auto;
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: end;
+}
+
+.video {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.button {
+  margin: 0 0 .5rem 1rem;
+  background-color: rgb(33, 36, 43);
+  color: rgb(233, 234, 237);
+  outline: none;
+  border: 1px solid rgb(233, 234, 237);
+  padding: 10px 15px;
+  width: 8rem;
+  cursor: pointer;
+  scale: 1;
+  transition: scale 20ms ease-in;
+}
+.button:active {
+  scale: 0.95;
+}
+
+.closeButton {
+  margin: 0 0 0 1rem;
+  background-color: rgb(33, 36, 43);
+  color: rgb(233, 234, 237);
+  outline: none;
+  border: 1px solid rgb(233, 234, 237);
+  padding: 10px 15px;
+  width: 8rem;
+  cursor: pointer;
+  position: absolute;
+  z-index: 10;
+  bottom: 60px;
+  left: 30px;
+}
+
+.heroTitle {
+  background-color: rgba(117, 117, 118, 0.4);
+  color: rgb(230, 230, 232);
+  margin: 0 0 0 1rem;
+  padding: .5rem;
+  width: 48%;
+}
+.heroOverview {
+  background-color: rgba(117, 117, 118, 0.4);
+  color: rgb(230, 230, 232);
+  margin: 0 0 1rem 1rem;
+  padding: .5rem;
+  width: 48%;
+}
+
+.movieContainer {
+  margin: 1rem auto 2rem auto;
+  padding: 0 1.5rem 3rem 1.5rem;
+  max-width: 1000px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 15px;
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  height: 245px;
+  width: 163.33px;
+  overflow: hidden;
+  object-fit: cover;
+  object-position: center;
+  cursor: pointer;
+}
+
+.image {
+  height: 100%;
+  scale: 1;
+  transition: scale 50ms ease-in;
+}
+.image:hover {
+  scale: 0.97;
+  
+}
+.image:active {
+  scale: 0.95;
+}
+
+.movieTitle {
+  color: #FFF;
+  margin-top: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.noMovies {
+  position: absolute;
+  bottom: 5rem;
+  padding: 0;
+  margin: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.footer {
+  position: fixed;
+  display: flex;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(168, 168, 168, 0.2);
+  /* background-color: rgb(33, 36, 43); */
+  backdrop-filter: blur(10px);
+  height: 5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchBar {
+  width: 300px;
+  height: 40px;
+  font-size: 1.5rem;
+  margin-top: auto;
+  margin-bottom: auto;
+  border: none;
+  border-radius: 15px;
+  text-align: center;
+  background-color: rgba(233, 234, 237, 0.695);
+}
+
+.searchBar:focus {
+  outline: none;
+}
+
+.searchBar:focus::placeholder {
+  color: transparent;
+}
