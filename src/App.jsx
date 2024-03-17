@@ -6,16 +6,16 @@ import React from 'react';
 import Homepage from './Homepage/Homepage';
 import MovieTheater from './MovieTheater/MovieTheater';
 import Trivia from './Trivia/Trivia';
-import { AuthProvider } from './Contexts/AuthContext';
+// import { AuthProvider } from './Contexts/AuthContext';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import ProtectedRoutes from './ProtectedRoutes';
+// import ProtectedRoutes from './ProtectedRoutes';
 
 export default function App() {
 
   return (
     <div className='app'>
       <Router basename={import.meta.env.DEV ? '/' : '/portfolio-v2/'}>
-        <AuthProvider>
+        {/* <AuthProvider> */}
           <Routes>
             <Route path="/" element={<Homepage/>}/>
             {/* <Route path='/signup' element={<SignUp/>} />
@@ -27,7 +27,7 @@ export default function App() {
             <Route path="/movietheater" element={<MovieTheater />} />
             <Route path="/trivia" element={<Trivia />}/>
           </Routes>
-        </AuthProvider>
+        {/* </AuthProvider> */}
       </Router>
     </div>
   )
