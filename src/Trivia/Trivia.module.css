@@ -8,26 +8,26 @@
   /* display: flex;
   flex-direction: column; */
   /* min-width: 320px; */
-  font-synthesis: none;
+  /* font-synthesis: none;
   text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
+  /* -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%; */
 }
 
-.header {
+.tr_header {
   display: flex;
   align-items: center;
   height: 60px;
   background-color: #f9f9f9;
 }
 
-.header button {
+.tr_header button {
   font-size: 1rem;
   margin-left: 0.5rem;
 }
 
-.main {
+.tr_main {
   max-width: 600px;
   height: calc(100vh - 60px);
   width: 100%;
