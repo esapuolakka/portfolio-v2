@@ -7,7 +7,7 @@ import Homepage from './Homepage/Homepage';
 import MovieTheater from './MovieTheater/MovieTheater';
 import Trivia from './Trivia/Trivia';
 import { AuthProvider } from './Contexts/AuthContext';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { createRouter as Router, Routes, Route } from 'react-router-dom';
 import ProtectedRoutes from './ProtectedRoutes';
 
 export default function App() {
