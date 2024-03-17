@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import styles from './Trivia.module.css';
+import './Trivia.css';
+import { useNavigate } from 'react-router-dom';
 
 function Trivia() {
   const [question, setQuestion] = useState('');
+  const navigate = useNavigate();
 
   const fetchData = () => {
     fetch('https://opentdb.com/api.php?amount=1')
@@ -19,14 +21,22 @@ function Trivia() {
     })
   }
 
+  const navigateHome = () => {
+    navigate('/')
+  }
+
   return (
-    <div className={styles.trivia}>
-      <div className={styles.header}>
-        <button>Back to Homepage</button>
+    <div className='trivia'>
+      <div className='tr_header'>
+        <button className='tr_backToHome' onClick={navigateHome}>Back to Homepage</button>
       </div>
-      <div className={styles.main}>
-        <button onClick={fetchData}>Fetch a trivia</button>
-        <p>{question}</p>
+      <div className='tr_main'>
+        <div className='tr_content'>
+          <button className='tr_button' onClick={fetchData}>Fetch a trivia</button>
+          {question != '' ? <div className='tr_p'><p>{question}</p></div>
+          :
+          <div className='tr_p'></div> }
+        </div>
       </div>
     </div>
   );

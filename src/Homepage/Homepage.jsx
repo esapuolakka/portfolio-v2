@@ -8,7 +8,7 @@ function Homepage() {
   const [cards, setCards] = useState([
     { id: 1, title: 'Bookstore', image: 'bookstore-thumbnail.png', link: '/bookstore', expanded: false, text: 'This project utilizes the MUI and AgGrid component libraries, as well as the Google Firebase Realtime Database. Users must be authenticated to access the app. Additionally, account deletion functionality is available in the bottom right corner.' },
     { id: 2, title: 'Movie Theater', image: 'movietheater-thumbnail.jpg', link: '/movietheater', expanded: false, text: 'This project integrates The Movie DB API for movie data retrieval and utilizes the YouTube component trailer playback. HTTP requests are handled by Axios and the search functionality has been enhanced with Lodash debounce. Enjoy!' },
-    { id: 3, title: 'Trivia', image: 'no-image.png', link: '/trivia', expanded: false, text: 'Another example text for Trivia.' },
+    { id: 3, title: 'Trivia', image: 'trivia-thumbnail.jpg', link: '/trivia', expanded: false, text: 'This is a simple app for fetching trivial questions from the Open Trivia DB.' },
     { id: 4, title: 'Card D', image: 'no-image.png', link: '/', expanded: false, text: 'Another example text for Card D.' },
   ]);
 
