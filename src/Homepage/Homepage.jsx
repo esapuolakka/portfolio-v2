@@ -34,7 +34,7 @@ function Homepage() {
           <div className={styles.card} key={card.id}>
           <a href={card.link}>
           <div className={styles.cardImage}>
-            <img className={styles.image} src={`src/images/${card.image}`}/>
+            <img className={styles.image} src={`/images/${card.image}`}/>
           </div>
           </a>
           <div className={styles.cardText}>

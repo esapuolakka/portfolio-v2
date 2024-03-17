@@ -4,7 +4,7 @@
   padding: 0;
   background-color: rgb(33, 36, 43);
   /* background-color: #edecec; */
-  background-image: url(../images/movietheater-bg.jpeg);
+  background-image: url('/images/movietheater-bg.jpeg');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;

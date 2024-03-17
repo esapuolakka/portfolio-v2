@@ -1,5 +1,5 @@
 import React from 'react';
-import noImage from '../images/no-image.png';
+import noImage from '/images/no-image.png';
 import styles from './MovieTheater.module.css';
 
 export default function MovieCard({ movie, imageUrl, selectMovie }) {
