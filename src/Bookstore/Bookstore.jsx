@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from './Bookstore.module.css';
+import './Bookstore.css';
 import AddBook from './AddBook';
 import { useAuth } from '../Contexts/AuthContext';
 import { getDatabase, ref, set, onValue, off, push } from "firebase/database";
@@ -159,7 +159,7 @@ function Bookstore() {
       await deleteCurrentUser();
       navigate('/signup');
     } catch (e){
-      console.log(e.message);
+      console.error(e);
       setError('Failed to delete an user');
     } finally {
       setLoading(false);
@@ -168,10 +168,10 @@ function Bookstore() {
   }
 
   return (
-    <div className={styles.bookstore}>
-      <AppBar className={styles.header} position='absolute'>
-        <Toolbar className={styles.headerContent}>
-          <Typography variant="h5" className={styles.headerTitle}>
+    <div className='bookstore'>
+      <AppBar className='bs_header' position='absolute'>
+        <Toolbar className='bs_headerContent'>
+          <Typography variant="h5" className='bs_headerTitle'>
             Bookstore database
           </Typography>
           <FormGroup style={{backgroundColor: '#fff', padding: '.5rem 1rem'}}>
@@ -188,7 +188,7 @@ function Bookstore() {
           </FormGroup>
         </Toolbar>
       </AppBar>
-      <div className={styles.main}>
+      <div className='bs_main'>
         {loading &&
           <Box sx={{position: 'fixed', zIndex: 200, left: '50%', top: '40%'}}>
             <CircularProgress />
@@ -201,7 +201,7 @@ function Bookstore() {
               <Button color="error" onClick={handleDeleteUser}>Delete</Button>
             </DialogActions>
           </Dialog>}
-          <div className={styles.addBookContainer}>
+          <div className='bs_addBookContainer'>
             <AddBook addBook={addBook} />
           </div>
           <div className='ag-theme-material' style={{width: '80%', height: '800px'}}>
@@ -211,9 +211,9 @@ function Bookstore() {
             />
           </div>
       </div>
-      <div className={styles.footer}>
-          <p>Logged in: <span id={styles.userHighlight}>{currentUser.email}</span></p>
-          <p><a onClick={handleOpen}>Delete user?</a></p>
+      <div className='bs_footer'>
+          <p className='bs_p'>Logged in: <span id='userHighlight'>{currentUser.email}</span></p>
+          <p><a className='bs_a' onClick={handleOpen}>Delete user?</a></p>
       </div>
     </div>
   );

@@ -3,10 +3,8 @@ import axios from 'axios'
 import YouTube from 'react-youtube'
 import debounce from 'lodash.debounce'
 
-import styles from './MovieTheater.module.css'
-import MovieCard from './MovieCard'
-
-
+import './MovieTheater.css'
+import MovieCard from './MovieCard.jsx'
 
 function MovieTheater() {
 
@@ -24,40 +22,40 @@ function MovieTheater() {
 
 
   // Fetching a list of movies
-const fetchMovies = useCallback(async () => {
-  const type = query ? 'search' : 'discover';
-  try {
-    const { data } = await axios.get(`${base_url}/${type}/movie`, {
-      params: {
-        api_key: api_key,
-        query: query
-      }
-    });
+  const fetchMovies = useCallback(async () => {
+    const type = query ? 'search' : 'discover';
+    try {
+      const { data } = await axios.get(`${base_url}/${type}/movie`, {
+        params: {
+          api_key: api_key,
+          query: query
+        }
+      });
 
-    if (data && data.results && Array.isArray(data.results) && data.results.length > 0) {
-      setMovies(data.results);
-      setSelectedMovie(data.results[0])
+      if (data && data.results && Array.isArray(data.results) && data.results.length > 0) {
+        setMovies(data.results);
+        setSelectedMovie(data.results[0])
+      }
+    } catch (error) {
+      console.error('Error fetching movies:', error);
     }
-  } catch (error) {
-    console.error('Error fetching movies:', error);
-  }
-}, [query, api_key])
+  }, [query, api_key])
 
 
   // Fetching data for a video
   const fetchMovie = async (id) => {
     try {
-    const { data } = await axios.get(`${base_url}/movie/${id}`, {
-      params: {
-        api_key: api_key,
-        append_to_response: 'videos'
-      }
-    })
+      const { data } = await axios.get(`${base_url}/movie/${id}`, {
+        params: {
+          api_key: api_key,
+          append_to_response: 'videos'
+        }
+      })
 
-    if(!data.videos || data.videos.results.length === 0) {
-      return {...data, videos: { results: [] }}
-    }
-    return data
+      if (!data.videos || data.videos.results.length === 0) {
+        return { ...data, videos: { results: [] } }
+      }
+      return data
     } catch (error) {
       console.error('Error fetching movie', error)
       return null
@@ -66,7 +64,7 @@ const fetchMovies = useCallback(async () => {
 
   const selectMovie = async (movie) => {
     const data = await fetchMovie(movie.id)
-    if(data) {
+    if (data) {
       setSelectedMovie(data)
       setPlayTrailer(false)
     } else {
@@ -90,9 +88,8 @@ const fetchMovies = useCallback(async () => {
 
   // Scrolls screen up when a movie is selected
   useEffect(() => {
-    window.scrollTo({top: 0, behavior: 'smooth'})
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [selectedMovie])
-
 
   const renderMovies = () =>
     movies.map(movie => (
@@ -103,7 +100,7 @@ const fetchMovies = useCallback(async () => {
         selectMovie={selectMovie}
       />
     ))
-  
+
   const selectBackdrop = () => {
     if (!selectedMovie || !selectedMovie.backdrop_path) {
       return null
@@ -117,19 +114,19 @@ const fetchMovies = useCallback(async () => {
       return null
     }
     let trailer = selectedMovie.videos.results.find(video => video.name === 'Official Trailer');
-  
+
     // If Official Trailer not found
     if (!trailer) {
       const trailerRegex = /trailer/i;
       trailer = selectedMovie.videos.results.find(video => trailerRegex.test(video.name));
     }
-  
+
     if (trailer) {
       const key = trailer.key;
-  
+
       return (
         <YouTube
-          className={styles.video}
+          className='movie_video'
           videoId={key}
           opts={{
             width: '100%',
@@ -147,7 +144,7 @@ const fetchMovies = useCallback(async () => {
 
   const showPlayTrailerButton = () => {
     if (!playTrailer) {
-      return <button className={styles.button} onClick={() => setPlayTrailer(true)}>Play Trailer</button>
+      return <button className='movie_button' onClick={() => setPlayTrailer(true)}>Play Trailer</button>
     }
     return null;
   }
@@ -174,30 +171,30 @@ const fetchMovies = useCallback(async () => {
   }
 
   return (
-    <div className={styles.movieTheaterApp}>
-      <header className={styles.header}>
-        <div className={styles.headerContent}>
-          <a href="/movietheater"><span className={styles.headerTitle}>Movie Theater App</span></a>
-          <a href="/" className={styles.backHome}><span>Back to Homepage</span></a>
+    <div className='movieTheaterApp'>
+      <header className='movie_header'>
+        <div className='movie_headerContent'>
+          <a href="/movietheater"><span className='movie_headerTitle'>Movie Theater App</span></a>
+          <a href="/" className='movie_backHome'><span>Back to Homepage</span></a>
         </div>
       </header>
-      <div className={styles.hero} style={{backgroundImage: selectBackdrop()}} onMouseMove={handleMouseMove}>
-        <div className={styles.heroContainer}>
+      <div className='movie_hero' style={{ backgroundImage: selectBackdrop() }} onMouseMove={handleMouseMove}>
+        <div className='movie_heroContainer'>
           {selectedMovie.videos && playTrailer ? renderTrailer() : null}
-          {isCursorActive && playTrailer ? (<button className={styles.closeButton} onClick={() => setPlayTrailer(false)}>Close</button>) : null}
+          {isCursorActive && playTrailer ? (<button className='movie_closeButton' onClick={() => setPlayTrailer(false)}>Close</button>) : null}
           {showPlayTrailerButton()}
-          <h1 className={styles.heroTitle}>{selectedMovie.title}</h1>
-          <p className={styles.heroOverview}>{selectedMovie.overview ? selectedMovie.overview : null}</p>
+          <h1 className='movie_heroTitle'>{selectedMovie.title}</h1>
+          <p className='movie_heroOverview'>{selectedMovie.overview ? selectedMovie.overview : null}</p>
         </div>
       </div>
-        {movies.length === 0 ? <p className={styles.noMovies}>No matching movies</p> :
-        <div className={styles.movieContainer}>
+      {movies.length === 0 ? <p className='movie_noMovies'>No matching movies</p> :
+        <div className='movie_movieContainer'>
           {renderMovies()}
         </div>
-        }
-      <div className={styles.footer}>
+      }
+      <div className='movie_footer'>
         <input
-          className={styles.searchBar}
+          className='movie_searchBar'
           type='text'
           placeholder='Search movies...'
           onChange={handleInputChange}

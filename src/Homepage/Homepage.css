@@ -2,12 +2,12 @@
   margin: 0;
 }
 
-a {
+.hp_cardLink {
   color: #000;
   text-decoration: none;
 }
 
-.header {
+.hp_header {
   display: flex;
   align-items: center;
   margin: 0;
@@ -16,11 +16,11 @@ a {
   border-bottom: 2px solid #000;
 }
 
-.header h1 {
+.hp_header h1 {
   margin-left: 20px;
 }
 
-.main {
+.hp_main {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,7 +28,7 @@ a {
   min-height: calc(100vh - 140px);
 }
 
-.main::before {
+.hp_main::before {
   content: '';
   position: absolute;
   z-index: -1;
@@ -39,7 +39,7 @@ a {
   background-position: top;
 }
 
-.cardsContainer {
+.hp_cardsContainer {
   margin: 5% 50px 10% 50px;
   display: grid;
   width: 60%;
@@ -47,7 +47,8 @@ a {
   gap: 25px;
 }
 
-.card {
+.hp_card {
+  max-width: 220px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -56,19 +57,19 @@ a {
   color: #FFF;
 }
 
-.card:hover {
+.hp_card:hover {
   cursor: pointer;
 }
 
-.card:active {
+.hp_card:active {
   box-shadow: none;
 }
 
-.cardImage {
+.hp_cardImage {
   overflow: hidden;
 }
 
-.image {
+.hp_image {
   display: block;
   margin: auto;
   max-width: 100%;
@@ -77,43 +78,43 @@ a {
   transition: transform 350ms ease 50ms;
 }
 
-.image:hover {
+.hp_image:hover {
   transform: scale(1.2);
 }
 
-.cardText {
+.hp_cardText {
   position: relative;
   background-color: #1976d2;
   border-top: 1px solid #000;
   margin-bottom: 0;
 }
 
-.cardText h3 {
+.hp_cardText h3 {
   font-size: 20px;
   margin: 0;
   padding-left: 8px;
 }
 
-.arrowContainer {
+.hp_arrowContainer {
   margin-bottom: 10px;
   height: auto;
   text-align: center;
 }
 
-.arrow {
+.hp_arrow {
   transform:rotate(90deg);
   transition: transform 0.2s ease;
 }
 
-.arrow:hover {
+.hp_arrow:hover {
   scale: 1.2;
 }
 
-.arrow.open {
+.hp_arrow.open {
   transform: translate(2.5%, -20%) rotate(270deg);
 }
 
-.expandedText {
+.hp_expandedText {
   width: 100%;
   margin-top: 1.5rem;
   padding: 5%;
@@ -131,21 +132,21 @@ a {
   transition: width, opacity, transform 500ms ease-in;
 }
 
-.expandedText.visible {
+.hp_expandedText.visible {
   width: 125%;
   color: #fff;
   z-index: 2;
   opacity: 1;
 }
 
-.footer {
+.hp_footer {
   display: flex;
   height: 60px;
   background-color: rgb(250, 215, 170, 0.5);
   text-align: center;
 }
 
-.footer p {
+.hp_footer p {
   margin: auto;
 }
 
