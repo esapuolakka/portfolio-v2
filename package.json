@@ -2,7 +2,7 @@
   "name": "portfolio-v2",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://esapuolakka.github.io",
+  "homepage": "https://esapuolakka.github.io/portfolio-v2",
   "type": "module",
   "scripts": {
     "dev": "vite",
