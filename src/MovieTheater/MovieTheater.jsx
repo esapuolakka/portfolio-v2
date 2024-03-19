@@ -10,7 +10,7 @@ function MovieTheater() {
 
   const base_url = 'https://api.themoviedb.org/3'
   const imageUrl = 'https://image.tmdb.org/t/p'
-  const api_key = import.meta.env.VITE_APP_MDB_API_KEY
+  const api_key = import.meta.env.VITE_MDB_API_KEY
 
   const [movies, setMovies] = useState([])
   const [query, setQuery] = useState('')
@@ -144,8 +144,10 @@ function MovieTheater() {
 
   const showPlayTrailerButton = () => {
     if (!playTrailer) {
-      return <button className='movie_button' onClick={() => setPlayTrailer(true)}>Play Trailer</button>
-    }
+      if (movies.length !== 0) {
+        return <button className='movie_button' onClick={() => setPlayTrailer(true)}>Play Trailer</button>
+        }
+      }
     return null;
   }
 

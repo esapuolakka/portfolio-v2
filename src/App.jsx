@@ -14,7 +14,7 @@ export default function App() {
 
   return (
     <div className='app'>
-      <Router basename={import.meta.env.DEV ? '/' : '/portfolio-v2/'}>
+      <Router>
         <AuthProvider>
           <Routes>
             <Route path="/" element={<Homepage/>}/>
