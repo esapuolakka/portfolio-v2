@@ -3,7 +3,6 @@
   margin: 0;
   padding: 0;
   background-color: rgb(33, 36, 43);
-  /* background-color: #edecec; */
   background-image: url('/images/movietheater-bg.jpeg');
   background-size: cover;
   background-repeat: no-repeat;
@@ -58,10 +57,7 @@
 .movie_heroContainer {
   max-width: 1000px;
   height: auto;
-  margin-top: auto;
-  margin-bottom: 0;
-  margin-left: auto;
-  margin-right: auto;
+  margin: auto auto 0 auto;
   align-items: end;
 }
 
@@ -120,8 +116,8 @@
 }
 
 .movie_movieContainer {
-  margin: 1rem auto 2rem auto;
-  padding: 0 1.5rem 3rem 1.5rem;
+  margin: 1rem auto 0 auto;
+  padding: 0 1.5rem 5rem 1.5rem;
   max-width: 1000px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
